@@ -1,0 +1,33 @@
+<ng-container *ngIf="item$ | async as item; else loading">
+    <ng-container *ngIf="item !== undefined; else notFound">
+        <div class="flex flex-col justify-center items-center min-h-screen text-start">
+            <div class="flex flex-row gap-10 text-start bg-[#2a2a2a] p-6">
+                <p class="text-xl font-bold">{{ item.name }}</p>
+                <div>
+                    <div class="mb-3">
+                        <p class="break-words max-w-[300px]">{{ item.description }}</p>
+                        <h2 class="text-xl mt-2 font-bold">R$ {{ item.price }}</h2>
+                    </div>
+                    <button (click)="deleteItem(item.id)" class="bg-red-700 text-white px-4 py-2 rounded">
+                        Delete item
+                    </button>
+                </div>
+            </div>
+            <a routerLink="/items" class="mt-4 text-[#CD9808] underline">Return to home</a>
+        </div>
+    </ng-container>
+</ng-container>
+
+<ng-template #loading>
+    <div class="flex justify-center items-center min-h-screen">
+        <h1>Carregando...</h1>
+    </div>
+</ng-template>
+
+<ng-template #notFound>
+    <div class="flex justify-center items-center min-h-screen">
+        <h1>ITEM NÃO ENCONTRADO</h1>
+    </div>
+</ng-template>
+
+<router-outlet />

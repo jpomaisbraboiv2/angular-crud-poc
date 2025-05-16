@@ -1,0 +1,30 @@
+<div *ngIf="item$ | async as items; else loading" class="flex flex-col items-center w-full mt-4">
+  <div *ngFor="let item of items">
+    <div class="p-3 flex flex-col items-center justify-center gap-2 my-2 text-start bg-[#171717] w-80">
+      <div routerLink="{{ item.id }}" class="w-full my-2 cursor-pointer">
+        <h1 class="text-[#CD9808] text-2xl">{{ item.name }}</h1>
+        <p class="text-base break-words whitespace-normal" style="overflow-wrap: break-word; word-break: break-word;">
+          {{ item.description }}
+        </p>
+        <h2 class="text-xl mt-1 font-bold">R$ {{ item.price }}</h2>
+      </div>
+      <div class="flex flex-row gap-4">
+        <button routerLink="/items/{{item.id}}/update" class="p-3 m-3 bg-[#CD9808] cursor-pointer">
+          Update Item
+        </button>
+        <button (click)="deleteItem(item.id)" class="cursor-pointer bg-red-700 p-3 m-3">
+          Delete item
+        </button>
+      </div>
+    </div>
+  </div>
+  <button routerLink="/items/create" class="bg-[#CD9808] p-4 w-80 text-black text-xl cursor-pointer">
+    Add item
+  </button>
+</div>
+
+<ng-template #loading>
+  <p>Carregando itens...</p>
+</ng-template>
+
+<router-outlet />

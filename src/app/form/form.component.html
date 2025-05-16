@@ -1,0 +1,35 @@
+<form [formGroup]="itemForm" (ngSubmit)="sendForm()"
+    class="flex flex-col gap-6 items-center justify-center min-h-screen text-white px-6">
+    <div class="bg-[#2a2a2a] p-8 rounded-lg shadow-md w-full max-w-md flex flex-col gap-5">
+        <h1 class="text-2xl font-bold text-[#CD9808] text-center">Create new item</h1>
+
+        <div class="flex flex-col gap-2 text-start">
+            <label for="name" class="text-base font-semibold">Item name</label>
+            <input id="name" type="text" formControlName="name"
+                class="border border-[#8d8d8d] p-2 rounded bg-[#1a1a1a] text-white focus:outline-none focus:border-[#CD9808]" />
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <label for="description" class="text-base font-semibold text-start">Description</label>
+            <textarea id="description" formControlName="description" rows="4"
+                class="border border-[#8d8d8d] p-2 rounded bg-[#1a1a1a] text-white resize-none focus:outline-none focus:border-[#CD9808]"></textarea>
+        </div>
+
+        <div class="flex flex-col gap-2">
+            <label for="price" class="text-base font-semibold text-start">Price</label>
+            <input id="price" type="number" formControlName="price"
+                class="border border-[#8d8d8d] p-2 rounded bg-[#1a1a1a] text-white focus:outline-none focus:border-[#CD9808]" />
+        </div>
+
+        <div class="flex flex-col gap-3 mt-4">
+            <button type="submit" [disabled]="itemForm.invalid"
+                class="bg-[#CD9808] text-black p-3 rounded font-semibold disabled:opacity-50 transition-colors hover:bg-[#e0a807]">
+                Create Item
+            </button>
+            <a routerLink="/items" class="mt-4 text-[#CD9808] underline">Return to home</a>
+
+        </div>
+    </div>
+</form>
+
+<router-outlet />
